@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Bayar2">
+
+    <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="488dp"
+        android:layout_height="873dp"
+        android:contentDescription="@string/todo15"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back7"
+        tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="331dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/acme"
+        android:text="PEMBAYARAN PENDAFTARAN PAUD"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.528"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="180dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:textColorHint="@color/teal_700"
+            app:boxBackgroundColor="#00FFFFFF"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/teal_700"
+            app:endIconTint="@color/teal_700"
+            app:hintTextColor="@color/teal_700"
+            app:startIconTint="@color/teal_700">
+
+            <EditText
+                android:id="@+id/nama"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:hint="@string/nama_lengkap"
+                android:textColor="#035560"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:textColorHint="@color/teal_700"
+            app:boxBackgroundColor="#00FFFFFF"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/teal_700"
+            app:endIconTint="@color/teal_700"
+            app:hintTextColor="@color/teal_700"
+            app:startIconTint="@color/teal_700">
+
+            <EditText
+                android:id="@+id/namaortu"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:hint="Nama Orangtua"
+                android:textColor="#035560"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:textColorHint="@color/teal_700"
+            app:boxBackgroundColor="#00FFFFFF"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/teal_700"
+            app:endIconTint="@color/teal_700"
+            app:hintTextColor="@color/teal_700"
+            app:startIconTint="@color/teal_700">
+
+            <EditText
+                android:id="@+id/kelas"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:hint="@string/kelas"
+                android:inputType="text"
+                android:textColor="#035560"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <EditText
+            android:id="@+id/tanggal"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:backgroundTint="#00FFFFFF"
+            android:focusable="false"
+            android:hint="@string/tanggal"
+            android:inputType="date"
+            android:minHeight="48dp"
+            android:textColor="#035560"
+            android:textColorHint="#035560" />
+
+        <EditText
+            android:id="@+id/nominal"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/nominal"
+            android:inputType="number"
+            android:textColor="#035560"
+            android:textColorHint="#035560"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bukti Pembayaran :"
+            android:textColor="@color/teal_700"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/uploadpendaftaran"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_menu_gallery" />
+
+        <Button
+            android:id="@+id/btntransaksi"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:backgroundTint="#035560"
+            android:text="@string/bayar"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:iconTint="@color/white" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

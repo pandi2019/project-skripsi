@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProgramBelajar">
+
+    <ImageView
+        android:id="@+id/imageView15"
+        android:layout_width="495dp"
+        android:layout_height="874dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.82"
+        app:srcCompat="@drawable/back7" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/acme"
+        android:text="@string/form_pendaftaran_program_belajar"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="321dp"
+        android:layout_height="606dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12">
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:textColorHint="@color/teal_700"
+                app:boxBackgroundColor="#00FFFFFF"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/teal_700"
+                app:endIconTint="@color/teal_700"
+                app:hintTextColor="@color/teal_700"
+                app:startIconTint="@color/teal_700">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/namabelajar"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:hint="Nama Lengkap"
+                    android:textColor="#035560"
+                    tools:ignore="TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jenis Kelamin"
+                android:textColor="@color/teal_700"
+                android:textSize="16sp" />
+
+            <RadioGroup
+                android:id="@+id/jeniskelaminbelajar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/lakibelajar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/teal_700"
+                    android:text="Laki-Laki"
+                    android:textColor="@color/teal_700"
+                    android:textSize="16sp"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <RadioButton
+                    android:id="@+id/perempuanbelajar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/teal_700"
+                    android:text="Perempuan"
+                    android:textColor="@color/teal_700"
+                    android:textSize="16sp"
+                    tools:ignore="TouchTargetSizeCheck,TextContrastCheck,TextContrastCheck,TextContrastCheck" />
+            </RadioGroup>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:textColorHint="@color/teal_700"
+                app:boxBackgroundColor="#00FFFFFF"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/teal_700"
+                app:endIconTint="@color/teal_700"
+                app:hintTextColor="@color/teal_700"
+                app:startIconTint="@color/teal_700">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tanggallahirbelajar"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:hint="TTL"
+                    android:textColor="#035560"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <MultiAutoCompleteTextView
+                android:id="@+id/agamabelajar"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:hint="@string/agama"
+                android:outlineAmbientShadowColor="@color/teal_700"
+                android:outlineSpotShadowColor="@color/teal_700"
+                android:shadowColor="@color/black"
+                android:textColor="#035560"
+                android:textColorHint="#035560"
+                android:textSize="16sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:textColorHint="@color/teal_700"
+                app:boxBackgroundColor="#00FFFFFF"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/teal_700"
+                app:endIconTint="@color/teal_700"
+                app:hintTextColor="@color/teal_700"
+                app:startIconTint="@color/teal_700">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ayahbelajar"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:hint="Ayah"
+                    android:textColor="#035560"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:textColorHint="@color/teal_700"
+                app:boxBackgroundColor="#00FFFFFF"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/teal_700"
+                app:endIconTint="@color/teal_700"
+                app:hintTextColor="@color/teal_700"
+                app:startIconTint="@color/teal_700">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ibubelajar"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:hint="Ibu"
+                    android:textColor="#035560"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:textColorHint="@color/teal_700"
+                app:boxBackgroundColor="#00FFFFFF"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/teal_700"
+                app:endIconTint="@color/teal_700"
+                app:hintTextColor="@color/teal_700"
+                app:startIconTint="@color/teal_700">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/alamatbelajar"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:hint="Alamat"
+                    android:textColor="#035560"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <EditText
+                android:id="@+id/nobelajar"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:ems="10"
+                android:hint="No. Hp"
+                android:inputType="number"
+                android:outlineAmbientShadowColor="@color/teal_700"
+                android:outlineSpotShadowColor="@color/teal_700"
+                android:shadowColor="@color/black"
+                android:textColor="#035560"
+                android:textColorHint="#035560"
+                android:textSize="16sp"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+            <EditText
+                android:id="@+id/emailbelajar"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:ems="10"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:outlineAmbientShadowColor="@color/teal_700"
+                android:outlineSpotShadowColor="@color/teal_700"
+                android:textColor="#035560"
+                android:textColorHint="#035560"
+                android:textSize="16sp"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <EditText
+                android:id="@+id/haritanggalbelajar"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:ems="10"
+                android:hint="Tanggal"
+                android:inputType="date"
+                android:outlineAmbientShadowColor="@color/teal_700"
+                android:outlineSpotShadowColor="@color/teal_700"
+                android:shadowColor="@color/black"
+                android:textColor="#035560"
+                android:textColorHint="#035560"
+                android:textSize="16sp"
+                tools:ignore="DuplicateIds,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+            <MultiAutoCompleteTextView
+                android:id="@+id/programbelajarskb"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:hint="Program Belajar"
+                android:outlineAmbientShadowColor="@color/teal_700"
+                android:outlineSpotShadowColor="@color/teal_700"
+                android:shadowColor="@color/black"
+                android:textColor="#035560"
+                android:textColorHint="#035560"
+                android:textSize="16sp"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/btndaftarbelajar"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:backgroundTint="#035560"
+                android:text="DAFTAR"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:iconTint="@color/white" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

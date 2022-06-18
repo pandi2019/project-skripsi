@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="email" type="id" />
+    <item name="password" type="id" />
+    <item name="et_username" type="id" />
+    <item name="et_password" type="id" />
+    <item name="nama" type="id" />
+    <item name="Button" type="id" />
+</resources>
