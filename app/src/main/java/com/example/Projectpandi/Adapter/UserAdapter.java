@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.Projectpandi.Model.User;
 import com.example.Projectpandi.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -51,7 +52,14 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.myViewHolder> 
         holder.kelas.setText(list.get(position).getKelas());
         holder.tanggal.setText(list.get(position).getTanggal());
         holder.nominal.setText(list.get(position).getNominal());
-        Glide.with(context).load(list.get(position).getUploadpendaftaran()).into(holder.uploadpendaftaran);
+
+        //Problem
+        Picasso.get().load(list.get(position).getUploadpendaftaran())
+                .centerCrop()
+                .fit()
+                .into(holder.uploadpendaftaran);
+
+//        Glide.with(context).load(list.get(position).getUploadpendaftaran()).into(holder.uploadpendaftaran);
     }
 
     @Override
@@ -71,12 +79,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.myViewHolder> 
             tanggal = itemView.findViewById(R.id.tanggal);
             nominal = itemView.findViewById(R.id.nominal);
             uploadpendaftaran = itemView.findViewById(R.id.uploadpendaftaran);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (dialog != null) {
-                        dialog.onClick(getLayoutPosition());
-                    }
+            itemView.setOnClickListener(view -> {
+                if (dialog != null) {
+                    dialog.onClick(getLayoutPosition());
                 }
             });
         }

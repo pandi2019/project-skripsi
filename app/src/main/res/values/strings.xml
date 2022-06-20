@@ -52,4 +52,21 @@
     <string name="agama">Agama</string>
     <string name="todo17">TODO</string>
     <string name="todo18">TODO</string>
+
+    <string-array name="agama">
+        <item>Islam</item>
+        <item>Protestan</item>
+        <item>Katolik</item>
+        <item>Hindu</item>
+        <item>Buddha</item>
+        <item>Konghucu</item>
+    </string-array>
+
+    <string-array name="programbelajar">
+        <item>Paket A</item>
+        <item>Paket B</item>
+        <item>Paket C</item>
+        <item>Les Jahit</item>
+        <item>Les Komputer</item>
+    </string-array>
 </resources>

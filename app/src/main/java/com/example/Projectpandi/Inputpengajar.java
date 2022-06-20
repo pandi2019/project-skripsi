@@ -3,6 +3,7 @@ package com.example.Projectpandi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,13 +54,19 @@ public class Inputpengajar extends AppCompatActivity {
         progressDialog.show();
         db.collection("pegawai")
                 .add(daftar3)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Toast.makeText(getApplicationContext(), "Berhasil!", Toast.LENGTH_SHORT).show();
-                        progressDialog.dismiss();
-                        finish();
-                    }
+                .addOnSuccessListener(documentReference -> {
+                    Toast.makeText(getApplicationContext(), "Berhasil!", Toast.LENGTH_SHORT).show();
+
+                    onBackPressed();
+                    progressDialog.dismiss();
                 });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        startActivity(new Intent(Inputpengajar.this, Datapengajar.class));
+        finish();
     }
 }

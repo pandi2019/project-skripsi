@@ -1,17 +1,17 @@
 package com.example.Projectpandi.Model;
 
 public class Belajarskb {
-    private String id, namabelajar, jeniskelaminbelajar, tanggallahirbelajar, agamabelajar, ayahbelajar, ibubelajar, alamatbelajar, nobelajar, emailbelajar, haritanggalbelajar, programbelajarskb;
+    private String id, namabelajar, jeniskelaminbelajar, tanggallahirbelajar, agamabelajar,
+            orangtuabelajar, alamatbelajar, nobelajar, emailbelajar, haritanggalbelajar, programbelajarskb;
 
-    public Belajarskb(){
-    }
-    public Belajarskb(String namabelajar, String jeniskelaminbelajar, String tanggallahirbelajar, String agamabelajar, String ayahbelajar, String ibubelajar, String alamatbelajar, String nobelajar, String emailbelajar, String haritanggalbelajar, String programbelajarskb){
+    public Belajarskb(String namabelajar, String jeniskelaminbelajar, String agamabelajar, String alamatbelajar,
+                      String emailbelajar, String haritanggalbelajar, String nobelajar, String orangtuabelajar,
+                      String programbelajarskb, String tanggallahirbelajar) {
         this.namabelajar = namabelajar;
         this.jeniskelaminbelajar = jeniskelaminbelajar;
         this.tanggallahirbelajar = tanggallahirbelajar;
         this.agamabelajar = agamabelajar;
-        this.ayahbelajar = ayahbelajar;
-        this.ibubelajar = ibubelajar;
+        this.orangtuabelajar = orangtuabelajar;
         this.alamatbelajar = alamatbelajar;
         this.nobelajar = nobelajar;
         this.emailbelajar = emailbelajar;
@@ -59,20 +59,12 @@ public class Belajarskb {
         this.agamabelajar = agamabelajar;
     }
 
-    public String getAyahbelajar() {
-        return ayahbelajar;
+    public String getOrangtuabelajar() {
+        return orangtuabelajar;
     }
 
-    public void setAyahbelajar(String ayahbelajar) {
-        this.ayahbelajar = ayahbelajar;
-    }
-
-    public String getIbubelajar() {
-        return ibubelajar;
-    }
-
-    public void setIbubelajar(String ibubelajar) {
-        this.ibubelajar = ibubelajar;
+    public void setOrangtuabelajar(String ibubelajar) {
+        this.orangtuabelajar = ibubelajar;
     }
 
     public String getAlamatbelajar() {

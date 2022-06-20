@@ -32,6 +32,7 @@ public class PengajarAdapter extends RecyclerView.Adapter<PengajarAdapter.myView
         this.context = context;
         this.list = list;
     }
+
     @NonNull
     @Override
     public PengajarAdapter.myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -60,12 +61,10 @@ public class PengajarAdapter extends RecyclerView.Adapter<PengajarAdapter.myView
             namapengajar = itemView.findViewById(R.id.namapengajar);
             nippegawai = itemView.findViewById(R.id.nippegawai);
             jabatan = itemView.findViewById(R.id.jabatan);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (dialog != null) {
-                        dialog.onClick(getLayoutPosition());
-                    }
+
+            itemView.setOnClickListener(view -> {
+                if (dialog != null) {
+                    dialog.onClick(getLayoutPosition());
                 }
             });
         }

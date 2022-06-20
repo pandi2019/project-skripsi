@@ -16,7 +16,7 @@
         android:icon="@drawable/logoskb"
         android:roundIcon="@drawable/logoskb"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Projectpandi"
+        android:theme="@style/AppTheme"
         tools:ignore="ObsoleteSdkInt,UnusedAttribute"
         tools:targetApi="28">
         <activity

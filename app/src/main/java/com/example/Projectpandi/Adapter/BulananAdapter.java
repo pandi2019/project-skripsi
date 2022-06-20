@@ -65,12 +65,9 @@ public class BulananAdapter extends RecyclerView.Adapter<BulananAdapter.myViewHo
             kelasbln = itemView.findViewById(R.id.kelasbln);
             tanggalbln = itemView.findViewById(R.id.tanggalbln);
             bulanan = itemView.findViewById(R.id.bulanan);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if(dialog!=null){
-                        dialog.onClick(getLayoutPosition());
-                    }
+            itemView.setOnClickListener(view -> {
+                if(dialog!=null){
+                    dialog.onClick(getLayoutPosition());
                 }
             });
         }

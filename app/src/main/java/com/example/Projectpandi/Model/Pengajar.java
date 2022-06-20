@@ -5,6 +5,7 @@ public class Pengajar {
 
     public Pengajar(){
     }
+
     public Pengajar(String namapengajar, String nippegawai, String jabatan){
         this.namapengajar = namapengajar;
         this.nippegawai = nippegawai;

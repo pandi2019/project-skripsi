@@ -10,9 +10,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -21,16 +19,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.Projectpandi.Adapter.UserAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -64,29 +59,24 @@ public class Bayar2 extends AppCompatActivity {
         progressDialog = new ProgressDialog(Bayar2.this);
         progressDialog.setTitle("loading");
         progressDialog.setTitle("Membayar...");
+
         Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
         final int month = calendar.get(Calendar.MONTH);
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        Uploadpendaftaran.setOnClickListener(v -> {
-            selectImage();
-        });
-        EditTanggal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        Bayar2.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        month = month + 1;
-                        String date = day + "/" + month + "/" + year;
+        Uploadpendaftaran.setOnClickListener(v -> selectImage());
+
+        EditTanggal.setOnClickListener(v -> {
+            DatePickerDialog datePickerDialog = new DatePickerDialog(
+                    Bayar2.this, (view, year1, month1, dayOfMonth) -> {
+                        month1 = month1 + 1;
+                        String date = day + "/" + month1 + "/" + year1;
                         EditTanggal.setText(date);
-                    }
-                }, year, month, day);
-                datePickerDialog.show();
-            }
+                    }, year, month, day);
+            datePickerDialog.show();
         });
+
         btnBayar.setOnClickListener(v -> {
             if (EditNama.getText().length() > 0 && EditNamaortu.getText().length() > 0 && EditKelas.getText().length() > 0 && EditTanggal.getText().length() > 0 && EditNominal.getText().length() > 0) {
                 upload(EditNama.getText().toString(), EditNamaortu.getText().toString(), EditKelas.getText().toString(), EditTanggal.getText().toString(), EditNominal.getText().toString());
@@ -94,6 +84,7 @@ public class Bayar2 extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Silahkan Isi Semua Data!", Toast.LENGTH_SHORT).show();
             }
         });
+
         Intent intent = getIntent();
         if (intent != null) {
             id = intent.getStringExtra("id");
@@ -102,7 +93,11 @@ public class Bayar2 extends AppCompatActivity {
             EditKelas.setText(intent.getStringExtra("kelas"));
             EditTanggal.setText(intent.getStringExtra("tanggal"));
             EditNominal.setText(intent.getStringExtra("nominal"));
-            Glide.with(getApplicationContext()).load(intent.getStringExtra("uploadpendaftaran")).into(Uploadpendaftaran);
+
+            Picasso.get().load(intent.getStringExtra("uploadpendaftaran"))
+                    .centerCrop()
+                    .fit()
+                    .into(Uploadpendaftaran);
         }
     }
 
@@ -111,6 +106,7 @@ public class Bayar2 extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(Bayar2.this);
         builder.setTitle(getString(R.string.app_name));
         builder.setIcon(R.mipmap.ic_launcher);
+
         builder.setItems(items, (dialog, item) -> {
             if (items[item].equals("Take Photo")) {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -123,6 +119,7 @@ public class Bayar2 extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
+
         builder.show();
     }
 
@@ -148,10 +145,9 @@ public class Bayar2 extends AppCompatActivity {
             final Bundle extras = data.getExtras();
             Thread thread = new Thread(() -> {
                 Bitmap bitmap = (Bitmap) extras.get("data");
-                Uploadpendaftaran.post(() -> {
-                    Uploadpendaftaran.setImageBitmap(bitmap);
-                });
+                Uploadpendaftaran.post(() -> Uploadpendaftaran.setImageBitmap(bitmap));
             });
+
             thread.start();
         }
     }
@@ -160,6 +156,7 @@ public class Bayar2 extends AppCompatActivity {
         progressDialog.show();
         Uploadpendaftaran.setDrawingCacheEnabled(true);
         Uploadpendaftaran.buildDrawingCache();
+
         Bitmap bitmap = ((BitmapDrawable) Uploadpendaftaran.getDrawable()).getBitmap();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
@@ -169,36 +166,30 @@ public class Bayar2 extends AppCompatActivity {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference reference = storage.getReference("images").child("IMG" + new Date().getTime() + ".jpeg");
         UploadTask uploadTask = reference.putBytes(data);
-        uploadTask.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getApplicationContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                progressDialog.dismiss();
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                if (taskSnapshot.getMetadata() != null) {
-                    if (taskSnapshot.getMetadata().getReference() != null) {
-                        taskSnapshot.getMetadata().getReference().getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Uri> task) {
-                                if (task.getResult() != null) {
-                                    bayarData(nama, namaortu, kelas, tanggal, nominal, task.getResult().toString());
-                                } else {
-                                    progressDialog.dismiss();
-                                    Toast.makeText(getApplicationContext(), "Gagal", Toast.LENGTH_SHORT).show();
-                                }
+        uploadTask.addOnFailureListener(e -> {
+            Toast.makeText(getApplicationContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            progressDialog.dismiss();
+        }).addOnSuccessListener(taskSnapshot -> {
+            if (taskSnapshot.getMetadata() != null) {
+                if (taskSnapshot.getMetadata().getReference() != null) {
+                    taskSnapshot.getMetadata().getReference().getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Uri> task) {
+                            if (task.getResult() != null) {
+                                bayarData(nama, namaortu, kelas, tanggal, nominal, task.getResult().toString());
+                            } else {
+                                progressDialog.dismiss();
+                                Toast.makeText(getApplicationContext(), "Gagal", Toast.LENGTH_SHORT).show();
                             }
-                        });
-                    } else {
-                        progressDialog.dismiss();
-                        Toast.makeText(getApplicationContext(), "Gagal", Toast.LENGTH_SHORT).show();
-                    }
+                        }
+                    });
                 } else {
                     progressDialog.dismiss();
                     Toast.makeText(getApplicationContext(), "Gagal", Toast.LENGTH_SHORT).show();
                 }
+            } else {
+                progressDialog.dismiss();
+                Toast.makeText(getApplicationContext(), "Gagal", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -215,20 +206,14 @@ public class Bayar2 extends AppCompatActivity {
         progressDialog.show();
         db.collection("pendaftaran")
                 .add(user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Toast.makeText(getApplicationContext(), "Berhasil", Toast.LENGTH_SHORT).show();
-                        progressDialog.dismiss();
-                        finish();
-                    }
+                .addOnSuccessListener(documentReference -> {
+                    Toast.makeText(getApplicationContext(), "Berhasil", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+                    finish();
                 })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getApplicationContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                        progressDialog.dismiss();
-                    }
+                .addOnFailureListener(e -> {
+                    Toast.makeText(getApplicationContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
                 });
 
     }

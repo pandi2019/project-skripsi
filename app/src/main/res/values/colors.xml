@@ -7,4 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="colorPrimary">#332C2B</color>
+    <color name="colorPrimaryDark">#191211</color>
+    <color name="colorAccent">#271E1D</color>
+    <color name="colorAccents">#FFEA00</color>
+    <color name="colorLightYellow">#FDFCDC</color>
+    <color name="colorBitterSweat">#682C19</color>
+    <color name="colorVerifikasi">#51E19B</color>
+
 </resources>

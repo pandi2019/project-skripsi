@@ -42,25 +42,20 @@ public class Bulanan2 extends AppCompatActivity {
         progressDialog= new ProgressDialog(Bulanan2.this);
         progressDialog.setTitle("loading");
         progressDialog.setTitle("Membayar...");
+
         Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
         final int month= calendar.get(Calendar.MONTH);
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        EditTanggalbln.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        Bulanan2.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        month = month + 1;
-                        String date = day+"/"+month+"/"+year;
+        EditTanggalbln.setOnClickListener(v -> {
+            DatePickerDialog datePickerDialog = new DatePickerDialog(
+                    Bulanan2.this, (view, year1, month1, dayOfMonth) -> {
+                        month1 = month1 + 1;
+                        String date = day+"/"+ month1 +"/"+ year1;
                         EditTanggalbln.setText(date);
-                    }
-                }, year, month, day);
-                datePickerDialog.show();
-            }
+                    }, year, month, day);
+            datePickerDialog.show();
         });
 
         btnBayar14.setOnClickListener(v -> {
@@ -84,20 +79,14 @@ public class Bulanan2 extends AppCompatActivity {
         progressDialog.show();
         db.collection("bulanan")
                 .add(user14)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Toast.makeText(getApplicationContext(), "Berhasil", Toast.LENGTH_SHORT).show();
-                        progressDialog.dismiss();
-                        finish();
-                    }
+                .addOnSuccessListener(documentReference -> {
+                    Toast.makeText(getApplicationContext(), "Berhasil", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+                    finish();
                 })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getApplicationContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                        progressDialog.dismiss();
-                    }
+                .addOnFailureListener(e -> {
+                    Toast.makeText(getApplicationContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
                 });
 
     }

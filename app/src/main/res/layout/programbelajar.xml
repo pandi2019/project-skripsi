@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -34,9 +35,9 @@
     <ScrollView
         android:layout_width="321dp"
         android:layout_height="606dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12">
@@ -74,6 +75,7 @@
                 android:layout_height="wrap_content"
                 android:text="Jenis Kelamin"
                 android:textColor="@color/teal_700"
+                android:layout_marginTop="10dp"
                 android:textSize="16sp" />
 
             <RadioGroup
@@ -120,22 +122,32 @@
                     android:id="@+id/tanggallahirbelajar"
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
-                    android:hint="TTL"
+                    android:hint="Tempat, Tgl Lahir"
+                    android:inputType="text"
                     android:textColor="#035560"
                     tools:ignore="TouchTargetSizeCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <MultiAutoCompleteTextView
-                android:id="@+id/agamabelajar"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                android:id="@+id/textInputLayout4"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:hint="@string/agama"
-                android:outlineAmbientShadowColor="@color/teal_700"
-                android:outlineSpotShadowColor="@color/teal_700"
-                android:shadowColor="@color/black"
-                android:textColor="#035560"
-                android:textColorHint="#035560"
-                android:textSize="16sp" />
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp">
+
+                <AutoCompleteTextView
+                    android:id="@+id/agamabelajar"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:hint="Agama"
+                    android:shadowColor="@color/black"
+                    android:textColor="#035560"
+                    android:inputType="none"
+                    android:ems="16"
+                    android:textColorHint="#035560"
+                    android:textSize="16sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -149,33 +161,33 @@
                 app:startIconTint="@color/teal_700">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/ayahbelajar"
+                    android:id="@+id/orangtuabelajar"
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
-                    android:hint="Ayah"
+                    android:hint="Orang Tua"
                     android:textColor="#035560"
                     tools:ignore="TouchTargetSizeCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:textColorHint="@color/teal_700"
-                app:boxBackgroundColor="#00FFFFFF"
-                app:boxBackgroundMode="outline"
-                app:boxStrokeColor="@color/teal_700"
-                app:endIconTint="@color/teal_700"
-                app:hintTextColor="@color/teal_700"
-                app:startIconTint="@color/teal_700">
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="70dp"-->
+<!--                android:textColorHint="@color/teal_700"-->
+<!--                app:boxBackgroundColor="#00FFFFFF"-->
+<!--                app:boxBackgroundMode="outline"-->
+<!--                app:boxStrokeColor="@color/teal_700"-->
+<!--                app:endIconTint="@color/teal_700"-->
+<!--                app:hintTextColor="@color/teal_700"-->
+<!--                app:startIconTint="@color/teal_700">-->
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/ibubelajar"
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:hint="Ibu"
-                    android:textColor="#035560"
-                    tools:ignore="TouchTargetSizeCheck" />
-            </com.google.android.material.textfield.TextInputLayout>
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:id="@+id/ibubelajar"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="70dp"-->
+<!--                    android:hint="Ibu"-->
+<!--                    android:textColor="#035560"-->
+<!--                    tools:ignore="TouchTargetSizeCheck" />-->
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -197,62 +209,90 @@
                     tools:ignore="TouchTargetSizeCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <EditText
-                android:id="@+id/nobelajar"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                android:ems="10"
-                android:hint="No. Hp"
-                android:inputType="number"
-                android:outlineAmbientShadowColor="@color/teal_700"
-                android:outlineSpotShadowColor="@color/teal_700"
-                android:shadowColor="@color/black"
-                android:textColor="#035560"
-                android:textColorHint="#035560"
-                android:textSize="16sp"
-                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                android:textColorHint="@color/teal_700"
+                app:boxBackgroundColor="#00FFFFFF"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/teal_700"
+                app:endIconTint="@color/teal_700"
+                app:hintTextColor="@color/teal_700"
+                app:startIconTint="@color/teal_700">
 
-            <EditText
-                android:id="@+id/emailbelajar"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:ems="10"
-                android:hint="Email"
-                android:inputType="textEmailAddress"
-                android:outlineAmbientShadowColor="@color/teal_700"
-                android:outlineSpotShadowColor="@color/teal_700"
-                android:textColor="#035560"
-                android:textColorHint="#035560"
-                android:textSize="16sp"
-                tools:ignore="TouchTargetSizeCheck" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nobelajar"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:hint="No. Hp"
+                    android:inputType="phone"
+                    android:textColor="#035560"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <EditText
-                android:id="@+id/haritanggalbelajar"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                android:ems="10"
-                android:hint="Tanggal"
-                android:inputType="date"
-                android:outlineAmbientShadowColor="@color/teal_700"
-                android:outlineSpotShadowColor="@color/teal_700"
-                android:shadowColor="@color/black"
-                android:textColor="#035560"
-                android:textColorHint="#035560"
-                android:textSize="16sp"
-                tools:ignore="DuplicateIds,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                android:textColorHint="@color/teal_700"
+                app:boxBackgroundColor="#00FFFFFF"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/teal_700"
+                app:endIconTint="@color/teal_700"
+                app:hintTextColor="@color/teal_700"
+                app:startIconTint="@color/teal_700">
 
-            <MultiAutoCompleteTextView
-                android:id="@+id/programbelajarskb"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/emailbelajar"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:textColor="#035560"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                android:hint="Program Belajar"
-                android:outlineAmbientShadowColor="@color/teal_700"
-                android:outlineSpotShadowColor="@color/teal_700"
-                android:shadowColor="@color/black"
-                android:textColor="#035560"
-                android:textColorHint="#035560"
-                android:textSize="16sp"
-                tools:ignore="TouchTargetSizeCheck" />
+                android:textColorHint="@color/teal_700"
+                app:boxBackgroundColor="#00FFFFFF"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/teal_700"
+                app:endIconTint="@color/teal_700"
+                app:hintTextColor="@color/teal_700"
+                app:startIconTint="@color/teal_700">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/haritanggalbelajar"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:hint="Tanggal Belajar"
+                    android:inputType="date"
+                    android:textColor="#035560" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                android:id="@+id/textInputLayout5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout3">
+
+                <AutoCompleteTextView
+                    android:id="@+id/programbelajarskb"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:hint="Program Belajar"
+                    android:shadowColor="@color/black"
+                    android:textColor="#035560"
+                    android:ems="16"
+                    android:textColorHint="#035560"
+                    android:textSize="16sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/btndaftarbelajar"
@@ -262,6 +302,7 @@
                 android:text="DAFTAR"
                 android:textColor="@color/white"
                 android:textSize="24sp"
+                android:layout_marginTop="10dp"
                 app:iconTint="@color/white" />
 
         </LinearLayout>

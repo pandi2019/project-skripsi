@@ -38,10 +38,12 @@ public class Beranda extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), Daftarbelajar.class));
             finish();
         });
-            btnTransaksi.setOnClickListener(v -> {
+
+        btnTransaksi.setOnClickListener(v -> {
             startActivity(new Intent(getApplicationContext(), Pembayaran.class));
             finish();
         });
+
         btnLogout.setOnClickListener(v -> {
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(getApplicationContext(), Login.class));
