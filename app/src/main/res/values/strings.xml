@@ -63,10 +63,11 @@
     </string-array>
 
     <string-array name="programbelajar">
-        <item>Paket A</item>
-        <item>Paket B</item>
-        <item>Paket C</item>
-        <item>Les Jahit</item>
-        <item>Les Komputer</item>
+        <item>PAUD (60 Orang)</item>
+        <item>Paket A (60 Orang)</item>
+        <item>Paket B (60 Orang)</item>
+        <item>Paket C (60 Orang)</item>
+        <item>Les Jahit (11 Orang)</item>
+        <item>Les Komputer (15 Orang)</item>
     </string-array>
 </resources>

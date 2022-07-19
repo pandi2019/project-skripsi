@@ -11,8 +11,11 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -26,6 +29,7 @@ public class ProgramBelajar extends AppCompatActivity {
 
     private AutoCompleteTextView EditAgamabelajar, EditProgrambelajarskb;
     private Button btnDaftar14;
+    private String id = "";
 
     private RadioGroup Jeniskelaminbelajar;
     private RadioButton laki, perempuan;
@@ -34,7 +38,7 @@ public class ProgramBelajar extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener setListener;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    private static final String TAG = "ProgramBelajar";
+    private static final String TAG = "Pendaftaran";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +63,7 @@ public class ProgramBelajar extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(ProgramBelajar.this);
         progressDialog.setTitle("loading");
-        progressDialog.setTitle("Program Belajar...");
+        progressDialog.setTitle("Pendaftaran...");
 
         Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
@@ -127,7 +131,7 @@ public class ProgramBelajar extends AppCompatActivity {
                     belajar.put("programbelajarskb", programbelajarskb);
 
                     progressDialog.show();
-                    db.collection("programbelajar")
+                    db.collection("Pendaftaran")
                             .add(belajar)
                             .addOnSuccessListener(documentReference -> {
                                 Toast.makeText(getApplicationContext(), "Berhasil", Toast.LENGTH_SHORT).show();
@@ -164,15 +168,79 @@ public class ProgramBelajar extends AppCompatActivity {
             EditHariTanggalbelajar.setText(haritanggalbelajar);
             EditProgrambelajarskb.setText(programbelajarskb);
 
-            // Lanjut Proses Update...
+            btnDaftar14.setOnClickListener(v -> {
+
+                String editkelaminValue;
+                int selectedId = Jeniskelaminbelajar.getCheckedRadioButtonId();
+
+                if (selectedId != -1) {
+                    RadioButton answer = findViewById(selectedId);
+                    editkelaminValue = answer.getText().toString();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Pilihan jenis kelamin gagal!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                String editnamabelajar = EditNamabelajar.getText().toString().trim();
+                String edittanggallahirbelajar = EditTanggallahirbelajar.getText().toString().trim();
+                String editagamabelajar = EditAgamabelajar.getText().toString().trim();
+                String editorangtuabelajar = EditOrangTua.getText().toString().trim();
+                String editalamatbelajar = EditAlamatbelajar.getText().toString().trim();
+                String editnobelajar = EditNobelajar.getText().toString().trim();
+                String editemailbelajar = EditEmailbelajar.getText().toString().trim();
+                String editharitanggalbelajar = EditHariTanggalbelajar.getText().toString().trim();
+                String editprogrambelajarskb = EditProgrambelajarskb.getText().toString().trim();
+
+                if (editnamabelajar.isEmpty() || edittanggallahirbelajar.isEmpty() || editagamabelajar.isEmpty() ||
+                        editorangtuabelajar.isEmpty() || editkelaminValue.isEmpty() || editalamatbelajar.isEmpty() ||
+                        editnobelajar.isEmpty() || editemailbelajar.isEmpty() || editharitanggalbelajar.isEmpty() || editprogrambelajarskb.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Silahkan Isi Semua Data!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Map<String, Object> belajar = new HashMap<>();
+                    belajar.put("namabelajar", editnamabelajar);
+                    belajar.put("jeniskelaminbelajar", editkelaminValue);
+                    belajar.put("tanggallahirbelajar", edittanggallahirbelajar);
+                    belajar.put("agamabelajar", editagamabelajar);
+                    belajar.put("orangtuabelajar", editorangtuabelajar);
+                    belajar.put("alamatbelajar", editalamatbelajar);
+                    belajar.put("nobelajar", editnobelajar);
+                    belajar.put("emailbelajar", editemailbelajar);
+                    belajar.put("haritanggalbelajar", editharitanggalbelajar);
+                    belajar.put("programbelajarskb", editprogrambelajarskb);
+
+                    progressDialog.show();
+                    if (id!= null) {
+                        db.collection("Pendaftaran").document(id)
+                                .set(belajar)
+                                .addOnCompleteListener(task -> {
+                                    if (!task.isSuccessful()) {
+                                        progressDialog.dismiss();
+                                        Toast.makeText(getApplicationContext(), "Data Berhasil diupdate!", Toast.LENGTH_SHORT).show();
+                                        finish();
+                                    } else {
+                                        progressDialog.dismiss();
+                                        Toast.makeText(getApplicationContext(), "Data Berhasil diupdate!", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
+
+                    } else {
+                        db.collection("Pendaftaran")
+                                .add(belajar)
+                                .addOnSuccessListener(documentReference -> {
+                                    Toast.makeText(getApplicationContext(), "Berhasil", Toast.LENGTH_SHORT).show();
+
+                                    onBackPressed();
+                                    progressDialog.dismiss();
+                                })
+                                .addOnFailureListener(e -> {
+                                    Toast.makeText(getApplicationContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                                    progressDialog.dismiss();
+                                });
+
+                    }
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-
-        startActivity(new Intent(ProgramBelajar.this, Daftarbelajar.class));
-        finish();
+    });
+}
     }
 }

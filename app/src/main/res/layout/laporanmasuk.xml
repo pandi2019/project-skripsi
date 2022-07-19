@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Inputsiswa">
+    tools:context=".LaporanMasuk">
 
     <ImageView
-        android:id="@+id/imageView27"
-        android:layout_width="534dp"
-        android:layout_height="886dp"
+        android:id="@+id/imageView16"
+        android:layout_width="583dp"
+        android:layout_height="1079dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,13 +17,13 @@
         app:srcCompat="@drawable/back7" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/textView18"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:layout_weight="1"
         android:fontFamily="@font/advent_pro_bold"
-        android:text="FORM SISWA PAUD"
+        android:text="FORM LAPORAN MASUK"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="34sp"
@@ -35,91 +35,73 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="140dp"
         android:layout_marginEnd="20dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9">
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginTop="10dp"
-            android:textColorHint="@color/teal_700"
-            app:boxBackgroundColor="#00FFFFFF"
-            app:boxBackgroundMode="outline"
-            app:boxStrokeColor="@color/teal_700"
-            app:endIconTint="@color/teal_700"
-            app:hintTextColor="@color/teal_700"
-            app:startIconTint="@color/teal_700">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/nama_siswa"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:hint="Nama Lengkap"
-                android:textColor="@color/teal_700"
-                android:textColorHint="@color/teal_700" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginTop="10dp"
-            android:textColorHint="@color/teal_700"
-            app:boxBackgroundColor="#00FFFFFF"
-            app:boxBackgroundMode="outline"
-            app:boxStrokeColor="@color/teal_700"
-            app:endIconTint="@color/teal_700"
-            app:hintTextColor="@color/teal_700"
-            app:startIconTint="@color/teal_700">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/nis_siswa"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:hint="NIS"
-                android:textColor="@color/teal_700"
-                android:textColorHint="@color/teal_700" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Jenis Kelamin"
+            android:layout_marginTop="10dp"
+            android:textColorHint="@color/teal_700"
+            app:boxBackgroundColor="#00FFFFFF"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/teal_700"
+            app:endIconTint="@color/teal_700"
+            app:hintTextColor="@color/teal_700"
+            app:startIconTint="@color/teal_700">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/nominalpembayaran"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nominal Rp.0"
+                android:textColor="@color/teal_700"
+                android:textColorHint="@color/teal_700"
+                android:textStyle="italic" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColorHint="@color/teal_700"
+            app:boxBackgroundColor="#00FFFFFF"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/teal_700"
+            app:endIconTint="@color/teal_700"
+            app:hintTextColor="@color/teal_700"
+            app:startIconTint="@color/teal_700">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/jumlahpembayar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Jumlah"
+                android:textColor="@color/teal_700"
+                android:textColorHint="@color/teal_700" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <EditText
+            android:id="@+id/tanggallaporan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#00FFFFFF"
+            android:focusable="false"
+            android:hint="Tanggal bayar"
+            android:inputType="date"
+            android:minHeight="48dp"
             android:textColor="@color/teal_700"
-            android:textSize="20sp" />
-
-        <RadioGroup
-            android:id="@+id/jeniskelamin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/radioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:buttonTint="@color/teal_700"
-                android:text="Laki-Laki"
-                android:textColor="@color/teal_700"
-                android:textSize="16sp" />
-
-            <RadioButton
-                android:id="@+id/radioButton2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:buttonTint="@color/teal_700"
-                android:text="Perempuan"
-                android:textColor="@color/teal_700"
-                android:textSize="16sp" />
-        </RadioGroup>
+            android:textColorHint="@color/teal_700"
+            android:textStyle="italic" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="match_parent"
             android:layout_marginTop="10dp"
             android:textColorHint="@color/teal_700"
             app:boxBackgroundColor="#00FFFFFF"
@@ -130,18 +112,61 @@
             app:startIconTint="@color/teal_700">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/alamat_siswa"
+                android:id="@+id/angkatan"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:hint="Alamat"
+                android:layout_height="wrap_content"
+                android:hint="Angkatan"
+                android:inputType="number"
+                android:textColor="@color/teal_700"
+                android:textColorHint="@color/teal_700"
+                android:textStyle="italic" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:textColorHint="@color/teal_700"
+            app:boxBackgroundColor="#00FFFFFF"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/teal_700"
+            app:endIconTint="@color/teal_700"
+            app:hintTextColor="@color/teal_700"
+            app:startIconTint="@color/teal_700">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/deskripsi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Deskripsi"
                 android:textColor="@color/teal_700"
                 android:textColorHint="@color/teal_700" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/btnsimpan"
+            android:id="@+id/totalpembayaran"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#035560"
+            android:text="TOTAL"
+            android:textSize="24sp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/hasil"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:text="Rp.0"
+            android:textColor="@color/teal_700"
+            android:textSize="34sp"
+            android:textStyle="italic" />
+
+        <Button
+            android:id="@+id/btnsimpanmasuk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:backgroundTint="#035560"
             android:text="SIMPAN"
@@ -149,5 +174,14 @@
             android:textSize="24sp"
             app:iconTint="@color/white" />
 
+        <Button
+            android:id="@+id/btnreset"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#035560"
+            android:text="RESET"
+            android:textSize="24sp" />
+
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

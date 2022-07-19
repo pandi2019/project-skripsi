@@ -3,6 +3,7 @@ package com.example.Projectpandi;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -46,32 +47,38 @@ public class Daftarbelajar extends AppCompatActivity {
         progressDialog.setMessage("Mengambil Data...");
 
         belajarAdapter = new BelajarAdapter(getApplicationContext(), list);
-        belajarAdapter.setDialog(pos -> {
-            final CharSequence[] dialogItem = {"Edit", "Hapus"};
-            AlertDialog.Builder dialog = new AlertDialog.Builder(Daftarbelajar.this);
-            dialog.setItems(dialogItem, (dialogInterface, i) -> {
-                switch (i) {
-                    case 0:
-                        Intent intent = new Intent(getApplicationContext(), ProgramBelajar.class);
-                        intent.putExtra("id", list.get(pos).getId());
-                        intent.putExtra("namabelajar", list.get(pos).getNamabelajar());
-                        intent.putExtra("jeniskelaminbelajar", list.get(pos).getJeniskelaminbelajar());
-                        intent.putExtra("tanggallahirbelajar", list.get(pos).getTanggallahirbelajar());
-                        intent.putExtra("agamabelajar", list.get(pos).getAgamabelajar());
-                        intent.putExtra("orangtuabelajar", list.get(pos).getOrangtuabelajar());
-                        intent.putExtra("alamatbelajar", list.get(pos).getAlamatbelajar());
-                        intent.putExtra("nobelajar", list.get(pos).getNobelajar());
-                        intent.putExtra("emailbelajar", list.get(pos).getEmailbelajar());
-                        intent.putExtra("haritanggalbelajar", list.get(pos).getHaritanggalbelajar());
-                        intent.putExtra("programbelajarskb", list.get(pos).getProgrambelajarskb());
-                        startActivity(intent);
-                        break;
-                    case 1:
-                        deleteData(list.get(pos).getId());
-                        break;
-                }
-            });
-            dialog.show();
+        belajarAdapter.setDialog(new BelajarAdapter.Dialog() {
+            @Override
+            public void onClick(int pos) {
+                final CharSequence[] dialogItem = {"Edit", "Hapus"};
+                AlertDialog.Builder dialog = new AlertDialog.Builder(Daftarbelajar.this);
+                dialog.setItems(dialogItem, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        switch (i) {
+                            case 0:
+                                Intent intent = new Intent(getApplicationContext(), ProgramBelajar.class);
+                                intent.putExtra("id", list.get(pos).getId());
+                                intent.putExtra("namabelajar", list.get(pos).getNamabelajar());
+                                intent.putExtra("jeniskelaminbelajar", list.get(pos).getJeniskelaminbelajar());
+                                intent.putExtra("tanggallahirbelajar", list.get(pos).getTanggallahirbelajar());
+                                intent.putExtra("agamabelajar", list.get(pos).getAgamabelajar());
+                                intent.putExtra("orangtuabelajar", list.get(pos).getOrangtuabelajar());
+                                intent.putExtra("alamatbelajar", list.get(pos).getAlamatbelajar());
+                                intent.putExtra("nobelajar", list.get(pos).getNobelajar());
+                                intent.putExtra("emailbelajar", list.get(pos).getEmailbelajar());
+                                intent.putExtra("haritanggalbelajar", list.get(pos).getHaritanggalbelajar());
+                                intent.putExtra("programbelajarskb", list.get(pos).getProgrambelajarskb());
+                                startActivity(intent);
+                                break;
+                            case 1:
+                                deleteData(list.get(pos).getId());
+                                break;
+                        }
+                    }
+                });
+                dialog.show();
+            }
         });
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
@@ -85,36 +92,42 @@ public class Daftarbelajar extends AppCompatActivity {
             finish();
         });
 
-        loadDaftarBelajar();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        getData();
     }
 
     private void deleteData(String id) {
         progressDialog.show();
-        db.collection("programbelajar").document(id)
+        db.collection("Pendaftaran").document(id)
                 .delete()
                 .addOnCompleteListener(task -> {
                     if (!task.isSuccessful()) {
                         Toast.makeText(getApplicationContext(), "Data Gagal Dihapus!", Toast.LENGTH_SHORT).show();
                     }
                     progressDialog.dismiss();
-                    loadDaftarBelajar();
+                    getData();
                 });
     }
 
-    private void loadDaftarBelajar() {
+    @SuppressLint("NotifyDataSetChanged")
+    private void getData() {
         progressDialog.show();
-        db.collection("programbelajar")
+        db.collection("Pendaftaran")
                 .get()
                 .addOnCompleteListener(task -> {
                     list.clear();
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            Belajarskb skb = new Belajarskb(document.getString("namabelajar"), document.getString("jeniskelaminbelajar"),
+                            Belajarskb belajar = new Belajarskb(document.getString("namabelajar"), document.getString("jeniskelaminbelajar"),
                                     document.getString("agamabelajar"), document.getString("alamatbelajar"), document.getString("emailbelajar"),
                                     document.getString("haritanggalbelajar"), document.getString("nobelajar"), document.getString("orangtuabelajar"),
                                     document.getString("programbelajarskb"), document.getString("tanggallahirbelajar"));
-                            skb.setId(document.getId());
-                            list.add(skb);
+                            belajar.setId(document.getId());
+                            list.add(belajar);
                         }
 
                         belajarAdapter.notifyDataSetChanged();

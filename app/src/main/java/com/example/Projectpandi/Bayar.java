@@ -88,12 +88,17 @@ public class Bayar extends AppCompatActivity {
         btnAdd.setOnClickListener(v -> {
             startActivity(new Intent(getApplicationContext(), Bayar2.class));
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         getData();
     }
 
     private void getData(){
         progressDialog.show();
-        db.collection("pendaftaran")
+        db.collection("Biaya masuk")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>(){
                     @SuppressLint("NotifyDataSetChanged")
@@ -117,7 +122,7 @@ public class Bayar extends AppCompatActivity {
     }
     private void deleteData(String id, String uploadpendaftaran){
         progressDialog.show();
-        db.collection("pendaftaran").document(id)
+        db.collection("Biaya masuk").document(id)
                 .delete()
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override

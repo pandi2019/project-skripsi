@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Datapengajar">
+    tools:context=".DataLaporanAngsuran">
 
     <ImageView
-        android:id="@+id/imageView25"
+        android:id="@+id/imageView32"
         android:layout_width="550dp"
         android:layout_height="876dp"
         android:contentDescription="TODO"
@@ -20,7 +20,7 @@
         tools:ignore="ImageContrastCheck" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview1"
+        android:id="@+id/recyclerviewangsuran"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -32,7 +32,7 @@
     </androidx.recyclerview.widget.RecyclerView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnadd4"
+        android:id="@+id/btnaddangsuran"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"

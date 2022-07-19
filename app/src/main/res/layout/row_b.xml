@@ -32,8 +32,8 @@
                 android:src="@drawable/datapengajar" />
 
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="233dp"
+                android:layout_height="67dp"
                 android:layout_marginTop="10dp">
 
                 <TextView
@@ -52,7 +52,7 @@
                     android:layout_width="240dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="17dp"
+                    android:layout_marginTop="25dp"
                     android:fontFamily="@font/gilroy_light"
                     android:text="NIP"
                     android:textColor="@color/colorPrimary"
@@ -64,7 +64,7 @@
                     android:layout_width="240dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="48dp"
                     android:fontFamily="@font/gilroy_light"
                     android:text="Jabatan"
                     android:textColor="@color/colorPrimary"

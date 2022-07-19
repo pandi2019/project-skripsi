@@ -1,5 +1,10 @@
 package com.example.Projectpandi;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -8,13 +13,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import com.example.Projectpandi.Adapter.LaporanmasukAdapter;
 
-import com.example.Projectpandi.Adapter.PengajarAdapter;
-import com.example.Projectpandi.Model.Pengajar;
+import com.example.Projectpandi.Model.LaporanM;
+
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -22,43 +25,47 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Datapengajar extends AppCompatActivity {
-    private RecyclerView recyclerView11;
-    private FloatingActionButton btnAdd11;
+public class DataLaporanMasuk extends AppCompatActivity {
+    private RecyclerView recyclerViewMasuk;
+    private FloatingActionButton btnAddMasuk;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private List<Pengajar> list = new ArrayList<>();
-    private PengajarAdapter pengajarAdapter;
+
+    private List<LaporanM> list = new ArrayList<>();
+    private LaporanmasukAdapter laporanmasukAdapter;
     private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.datapengajar);
+        setContentView(R.layout.datalaporanmasuk);
 
-        recyclerView11 = findViewById(R.id.recyclerview1);
-        btnAdd11 = findViewById(R.id.btnadd4);
+        recyclerViewMasuk = findViewById(R.id.recyclerviewlaporanmasuk);
+        btnAddMasuk= findViewById(R.id.btnaddlaporanmasuk);
 
-        progressDialog = new ProgressDialog(Datapengajar.this);
+        progressDialog = new ProgressDialog(DataLaporanMasuk.this);
         progressDialog.setTitle("loading");
         progressDialog.setMessage("Mengambil Data...");
+        laporanmasukAdapter= new LaporanmasukAdapter(getApplicationContext(), list);
+        laporanmasukAdapter.setDialog(new LaporanmasukAdapter.Dialog(){
 
-        pengajarAdapter = new PengajarAdapter(getApplicationContext(), list);
-        pengajarAdapter.setDialog(new PengajarAdapter.Dialog(){
             @Override
-            public void onClick(int pos){
+            public void onClick(int pos) {
                 final CharSequence[] dialogItem = {"Edit", "Hapus"};
-                AlertDialog.Builder dialog = new AlertDialog.Builder(Datapengajar.this);
+                AlertDialog.Builder dialog = new AlertDialog.Builder(DataLaporanMasuk.this);
                 dialog.setItems(dialogItem, new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         switch (i) {
                             case 0:
-                                Intent intent = new Intent(getApplicationContext(), Inputpengajar.class);
+                                Intent intent = new Intent(getApplicationContext(), LaporanMasuk.class);
                                 intent.putExtra("id", list.get(pos).getId());
-                                intent.putExtra("namapengajar", list.get(pos).getNamapengajar());
-                                intent.putExtra("nippegawai", list.get(pos).getNippegawai());
-                                intent.putExtra("jabatan", list.get(pos).getJabatan());
+                                intent.putExtra("nominalpembayaran", list.get(pos).getNominalpembayaran());
+                                intent.putExtra("jumlahpembayar", list.get(pos).getJumlahpembayar());
+                                intent.putExtra("tanggallaporan", list.get(pos).getTanggallaporan());
+                                intent.putExtra("angkatan", list.get(pos).getAngkatan());
+                                intent.putExtra("deskripsi", list.get(pos).getDeskripsi());
+                                intent.putExtra("hasil", list.get(pos).getHasil());
                                 startActivity(intent);
                                 break;
                             case 1:
@@ -71,17 +78,17 @@ public class Datapengajar extends AppCompatActivity {
             }
         });
 
-
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         RecyclerView.ItemDecoration decoration = new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL);
-        recyclerView11.setLayoutManager(layoutManager);
-        recyclerView11.addItemDecoration(decoration);
-        recyclerView11.setAdapter(pengajarAdapter);
+        recyclerViewMasuk.setLayoutManager(layoutManager);
+        recyclerViewMasuk.addItemDecoration(decoration);
+        recyclerViewMasuk.setAdapter(laporanmasukAdapter);
 
-        btnAdd11.setOnClickListener(v -> {
-            startActivity(new Intent(getApplicationContext(), Inputpengajar.class));
+        btnAddMasuk.setOnClickListener(v -> {
+            startActivity(new Intent(getApplicationContext(), LaporanMasuk.class));
             finish();
         });
+
     }
 
     @Override
@@ -93,17 +100,17 @@ public class Datapengajar extends AppCompatActivity {
     @SuppressLint("NotifyDataSetChanged")
     private void getData() {
         progressDialog.show();
-        db.collection("Data Pengajar")
+        db.collection("Laporan biaya masuk")
                 .get()
                 .addOnCompleteListener(task -> {
                     list.clear();
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            Pengajar daftar3 = new Pengajar(document.getString("namapengajar"), document.getString("nippegawai"), document.getString("jabatan"));
-                            daftar3.setId(document.getId());
-                            list.add(daftar3);
+                            LaporanM laporan1 = new LaporanM(document.getString("nominalpembayaran"), document.getString("jumlahpembayar"), document.getString("tanggallaporan"), document.getString("angkatan"), document.getString("deskripsi"), document.getString("hasil"));
+                            laporan1.setId(document.getId());
+                            list.add(laporan1);
                         }
-                        pengajarAdapter.notifyDataSetChanged();
+                        laporanmasukAdapter.notifyDataSetChanged();
                     } else {
                         Toast.makeText(getApplicationContext(), "Data Gagal Tampil", Toast.LENGTH_SHORT).show();
                     }
@@ -111,10 +118,9 @@ public class Datapengajar extends AppCompatActivity {
                 });
 
     }
-
     private void deleteData(String id) {
         progressDialog.show();
-        db.collection("Data Pengajar").document(id)
+        db.collection("Laporan biaya masuk").document(id)
                 .delete()
                 .addOnCompleteListener(task -> {
                     if (!task.isSuccessful()) {
@@ -124,5 +130,4 @@ public class Datapengajar extends AppCompatActivity {
                     getData();
                 });
     }
-
 }

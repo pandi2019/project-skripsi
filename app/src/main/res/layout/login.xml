@@ -69,7 +69,7 @@
         android:layout_marginBottom="10dp"
         android:background="#00FFFFFF"
         android:linksClickable="true"
-        android:text="@string/buat_akun"
+        android:text="REGISTER?"
         android:textColor="#5A0202"
         android:textSize="24sp"
         android:textStyle="bold|italic"

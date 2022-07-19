@@ -73,8 +73,7 @@
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="25sp"
-            android:textStyle="bold"
-            tools:ignore="DuplicateIds" />
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -97,7 +96,7 @@
             android:contentDescription="@string/todo6"
             android:state_focused="true"
             android:state_pressed="true"
-            app:srcCompat="@drawable/bayar" />
+            app:srcCompat="@drawable/pembayaran" />
 
         <ImageButton
             android:id="@+id/btnprogram"
@@ -108,7 +107,7 @@
             android:contentDescription="@string/todo7"
             android:state_focused="true"
             android:state_pressed="true"
-            app:srcCompat="@drawable/belajar" />
+            app:srcCompat="@drawable/pendaftaran" />
     </LinearLayout>
 
     <LinearLayout
@@ -119,6 +118,15 @@
         app:layout_constraintEnd_toEndOf="@+id/linearLayout"
         app:layout_constraintStart_toStartOf="@+id/linearLayout"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <ImageButton
+            android:id="@+id/btnlaporan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00FFFFFF"
+            android:src="@drawable/laporan"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageButton
             android:id="@+id/btnpengajar"

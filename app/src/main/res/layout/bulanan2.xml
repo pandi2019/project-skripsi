@@ -24,7 +24,7 @@
         android:layout_height="80dp"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/acme"
-        android:text="PEMBAYARAN BULANAN PAUD"
+        android:text="PEMBAYARAN ANGSURAN PAUD"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="30sp"
@@ -33,6 +33,40 @@
         app:layout_constraintHorizontal_bias="0.528"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="361dp"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/textView14"
+        app:layout_constraintStart_toStartOf="@+id/textView14"
+        app:layout_constraintTop_toBottomOf="@+id/textView14">
+
+        <EditText
+            android:id="@+id/salin1"
+            android:layout_width="338dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:text="410601016905537 (BRI) A/N Sanggar Kegiatan Belajar"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            tools:ignore="RtlCompat,TouchTargetSizeCheck" />
+
+        <ImageButton
+            android:id="@+id/btnsalin1"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="#00FFFFFF"
+            android:scaleType="center"
+            app:srcCompat="?attr/actionModeCopyDrawable"
+            tools:ignore="DuplicateIds,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -47,7 +81,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="wrap_content"
             android:textColorHint="@color/teal_700"
             app:boxBackgroundColor="#00FFFFFF"
             app:boxBackgroundMode="outline"
@@ -59,7 +93,7 @@
             <EditText
                 android:id="@+id/namabln"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="wrap_content"
                 android:hint="Nama Lengkap"
                 android:textColor="#035560"
                 tools:ignore="SpeakableTextPresentCheck" />
@@ -67,7 +101,8 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:textColorHint="@color/teal_700"
             app:boxBackgroundColor="#00FFFFFF"
             app:boxBackgroundMode="outline"
@@ -79,7 +114,7 @@
             <EditText
                 android:id="@+id/nisbln"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="wrap_content"
                 android:hint="Nis"
                 android:textColor="#035560"
                 tools:ignore="SpeakableTextPresentCheck" />
@@ -87,7 +122,8 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:textColorHint="@color/teal_700"
             app:boxBackgroundColor="#00FFFFFF"
             app:boxBackgroundMode="outline"
@@ -99,7 +135,7 @@
             <EditText
                 android:id="@+id/kelasbln"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="wrap_content"
                 android:hint="Kelas"
                 android:inputType="text"
                 android:textColor="#035560"
@@ -109,31 +145,51 @@
         <EditText
             android:id="@+id/tanggalbln"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:backgroundTint="#00FFFFFF"
             android:focusable="false"
             android:hint="Tanggal"
             android:inputType="date"
             android:minHeight="48dp"
-            android:textColor="#035560"
-            android:textColorHint="#035560" />
+            android:textColor="@color/teal_700"
+            android:textColorHint="@color/teal_700" />
 
         <EditText
             android:id="@+id/bulanan"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:autofillHints=""
             android:ems="10"
-            android:hint="Bulanan"
+            android:hint="Nominal"
             android:inputType="number"
-            android:textColor="#035560"
-            android:textColorHint="#035560"
+            android:textColor="@color/teal_700"
+            android:textColorHint="@color/teal_700"
             tools:ignore="TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Bukti Pembayaran :"
+            android:textColor="@color/teal_700"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/uploadbulanan"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="#E4ACAAAA"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/camera" />
 
         <Button
             android:id="@+id/btntransaksibln"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
             android:backgroundTint="#035560"
             android:text="@string/bayar"
             android:textColor="@color/white"

@@ -20,43 +20,58 @@
         tools:ignore="ObsoleteSdkInt,UnusedAttribute"
         tools:targetApi="28">
         <activity
-            android:name="com.example.Projectpandi.Bulanan2"
+            android:name=".DataLaporanAngsuran"
+            android:exported="false" />
+        <activity
+            android:name=".LaporanAngsuran"
+            android:exported="false" />
+        <activity
+            android:name=".LaporanBayar"
+            android:exported="false" />
+        <activity
+            android:name=".DataLaporanMasuk"
+            android:exported="false" />
+        <activity
+            android:name=".LaporanMasuk"
+            android:exported="false" />
+        <activity
+            android:name=".Bulanan2"
             android:exported="true" />
         <activity
-            android:name="com.example.Projectpandi.Bulanan"
+            android:name=".Bulanan"
             android:exported="true" />
         <activity
-            android:name="com.example.Projectpandi.Inputpengajar"
+            android:name=".Inputpengajar"
             android:exported="true" />
         <activity
-            android:name="com.example.Projectpandi.Datapengajar"
+            android:name=".Datapengajar"
             android:exported="true" />
         <activity
-            android:name="com.example.Projectpandi.ProgramBelajar"
+            android:name=".ProgramBelajar"
             android:exported="true" />
         <activity
-            android:name="com.example.Projectpandi.Daftarbelajar"
+            android:name=".Daftarbelajar"
             android:exported="true" />
         <activity
-            android:name="com.example.Projectpandi.Bayar2"
+            android:name=".Bayar2"
             android:exported="true" />
         <activity
-            android:name="com.example.Projectpandi.Bayar"
+            android:name=".Bayar"
             android:exported="true" />
         <activity
-            android:name="com.example.Projectpandi.Pembayaran"
+            android:name=".Pembayaran"
             android:exported="true" />
         <activity
-            android:name="com.example.Projectpandi.Beranda"
+            android:name=".Beranda"
             android:exported="true" />
         <activity
-            android:name="com.example.Projectpandi.Register"
+            android:name=".Register"
             android:exported="true" />
         <activity
-            android:name="com.example.Projectpandi.Login"
+            android:name=".Login"
             android:exported="true" />
         <activity
-            android:name="com.example.Projectpandi.Splashscren"
+            android:name=".Splashscren"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -65,7 +80,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.Projectpandi.MainActivity"
+            android:name=".MainActivity"
             android:exported="true" />
     </application>
 

@@ -43,6 +43,6 @@
         app:backgroundTint="#04BCD3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_baseline_loupe_24"
+        app:srcCompat="@drawable/ic_baseline_control_point_24"
         tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck,DuplicateSpeakableTextCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>

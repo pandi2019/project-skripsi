@@ -17,14 +17,14 @@ import java.util.List;
 public class PengajarAdapter extends RecyclerView.Adapter<PengajarAdapter.myViewHolder> {
     private Context context;
     private List<Pengajar> list;
-    private PengajarAdapter.Dialog dialog;
+    private Dialog dialog;
 
     public interface Dialog {
         void onClick(int pos);
 
     }
 
-    public void setDialog(PengajarAdapter.Dialog dialog) {
+    public void setDialog(Dialog dialog) {
         this.dialog = dialog;
     }
 
@@ -35,13 +35,13 @@ public class PengajarAdapter extends RecyclerView.Adapter<PengajarAdapter.myView
 
     @NonNull
     @Override
-    public PengajarAdapter.myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_b, parent, false);
         return new PengajarAdapter.myViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PengajarAdapter.myViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull myViewHolder holder, int position) {
         holder.namapengajar.setText(list.get(position).getNamapengajar());
         holder.nippegawai.setText(list.get(position).getNippegawai());
         holder.jabatan.setText(list.get(position).getJabatan());

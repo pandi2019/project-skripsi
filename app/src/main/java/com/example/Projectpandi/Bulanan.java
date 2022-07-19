@@ -22,12 +22,13 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Bulanan extends AppCompatActivity {
-    private RecyclerView RecyclerView14;
+    private androidx.recyclerview.widget.RecyclerView RecyclerView14;
     private FloatingActionButton btnAdd18;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private List<Bulanan14> list = new ArrayList<>();
@@ -63,10 +64,11 @@ public class Bulanan extends AppCompatActivity {
                                 intent.putExtra("kelasbln", list.get(pos).getKelasbln());
                                 intent.putExtra("tanggalbln", list.get(pos).getTanggalbln());
                                 intent.putExtra("bulanan", list.get(pos).getBulanan());
+                                intent.putExtra("uploadbulanan", list.get(pos).getUploadbulanan());
                                 startActivity(intent);
                                 break;
                             case 1:
-                                deleteDatabase(list.get(pos).getId());
+                                deleteData(list.get(pos).getId(), list.get(pos).getUploadbulanan());
                                 break;
                         }
                     }
@@ -84,12 +86,17 @@ public class Bulanan extends AppCompatActivity {
         btnAdd18.setOnClickListener(v -> {
             startActivity(new Intent(getApplicationContext(), Bulanan2.class));
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         getData();
     }
 
     private void getData() {
         progressDialog.show();
-        db.collection("bulanan")
+        db.collection("Biaya angsuran")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @SuppressLint("NotifyDataSetChanged")
@@ -98,7 +105,7 @@ public class Bulanan extends AppCompatActivity {
                         list.clear();
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Bulanan14 user14 = new Bulanan14(document.getString("namabln"), document.getString("nisbln"), document.getString("kelasbln"), document.getString("tanggalbln"), document.getString("bulanan"));
+                                Bulanan14 user14 = new Bulanan14(document.getString("namabln"), document.getString("nisbln"), document.getString("kelasbln"), document.getString("tanggalbln"), document.getString("bulanan"), document.getString("uploadbulanan"));
                                 user14.setId(document.getId());
                                 list.add(user14);
                             }
@@ -111,4 +118,28 @@ public class Bulanan extends AppCompatActivity {
                 });
 
     }
+    private void deleteData(String id, String uploadbulanan){
+        progressDialog.show();
+        db.collection("Biaya angsuran").document(id)
+                .delete()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (!task.isSuccessful()) {
+                            progressDialog.dismiss();
+                            Toast.makeText(getApplicationContext(), "Data Gagal Dihapus!", Toast.LENGTH_SHORT).show();
+                        }else{
+                            FirebaseStorage.getInstance().getReferenceFromUrl(uploadbulanan).delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressDialog.dismiss();
+                                    getData();
+                                }
+                            });
+                        }
+
+                    }
+                });
+    }
+
 }

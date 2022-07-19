@@ -3,6 +3,9 @@ package com.example.Projectpandi;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,8 +13,10 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -36,9 +41,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Bayar2 extends AppCompatActivity {
-    private EditText EditNama, EditNamaortu, EditKelas, EditTanggal, EditNominal;
+    private EditText EditNama, EditNamaortu, EditKelas, EditTanggal, EditNominal, Salin;
     private ImageView Uploadpendaftaran;
     private Button btnBayar;
+    private ImageButton btnSalin;
     private ProgressDialog progressDialog;
     private String id = "";
     private DatePickerDialog.OnDateSetListener setListener;
@@ -54,6 +60,8 @@ public class Bayar2 extends AppCompatActivity {
         EditTanggal = findViewById(R.id.tanggal);
         EditNominal = findViewById(R.id.nominal);
         btnBayar = findViewById(R.id.btntransaksi);
+        Salin = findViewById(R.id.salin);
+        btnSalin = findViewById(R.id.btnsalin);
         Uploadpendaftaran = findViewById(R.id.uploadpendaftaran);
 
         progressDialog = new ProgressDialog(Bayar2.this);
@@ -70,11 +78,22 @@ public class Bayar2 extends AppCompatActivity {
         EditTanggal.setOnClickListener(v -> {
             DatePickerDialog datePickerDialog = new DatePickerDialog(
                     Bayar2.this, (view, year1, month1, dayOfMonth) -> {
-                        month1 = month1 + 1;
-                        String date = day + "/" + month1 + "/" + year1;
-                        EditTanggal.setText(date);
-                    }, year, month, day);
+                month1 = month1 + 1;
+                String date = day + "/" + month1 + "/" + year1;
+                EditTanggal.setText(date);
+            }, year, month, day);
             datePickerDialog.show();
+        });
+
+        btnSalin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("EditText", Salin.getText().toString());
+                clipboard.setPrimaryClip(clip);
+
+                Toast.makeText(Bayar2.this, "Salin!!!", Toast.LENGTH_SHORT).show();
+            }
         });
 
         btnBayar.setOnClickListener(v -> {
@@ -105,7 +124,7 @@ public class Bayar2 extends AppCompatActivity {
         final CharSequence[] items = {"Take Photo", "Choose from Library", "Cancel"};
         AlertDialog.Builder builder = new AlertDialog.Builder(Bayar2.this);
         builder.setTitle(getString(R.string.app_name));
-        builder.setIcon(R.mipmap.ic_launcher);
+        builder.setIcon(R.mipmap.skbkarawang);
 
         builder.setItems(items, (dialog, item) -> {
             if (items[item].equals("Take Photo")) {
@@ -126,7 +145,7 @@ public class Bayar2 extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 20 && requestCode == RESULT_OK && data != null) {
+        if (requestCode == 20 && resultCode == RESULT_OK && data != null) {
             final Uri path = data.getData();
             Thread thread = new Thread(() -> {
                 try {
@@ -204,18 +223,34 @@ public class Bayar2 extends AppCompatActivity {
         user.put("uploadpendaftaran", uploadpendaftaran);
 
         progressDialog.show();
-        db.collection("pendaftaran")
-                .add(user)
-                .addOnSuccessListener(documentReference -> {
-                    Toast.makeText(getApplicationContext(), "Berhasil", Toast.LENGTH_SHORT).show();
-                    progressDialog.dismiss();
-                    finish();
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(getApplicationContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                    progressDialog.dismiss();
-                });
+        if (id!=null) {
+            db.collection("Biaya masuk").document(id)
+                    .set(user)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if ((task.isSuccessful())) {
+                                Toast.makeText(getApplicationContext(), "Berhasil", Toast.LENGTH_SHORT).show();
+                                finish();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Gagal", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+        } else {
+            db.collection("Biaya masuk")
+                    .add(user)
+                    .addOnSuccessListener(documentReference -> {
+                        Toast.makeText(getApplicationContext(), "Berhasil", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                        finish();
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(getApplicationContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                    });
 
+        }
     }
 }
 

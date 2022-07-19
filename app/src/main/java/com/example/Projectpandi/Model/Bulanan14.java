@@ -1,18 +1,19 @@
 package com.example.Projectpandi.Model;
 
 public class Bulanan14 {
-    private String id, namabln, nisbln, kelasbln, tanggalbln, bulanan;
+    private String id, namabln, nisbln, kelasbln, tanggalbln, bulanan, uploadbulanan;
 
     public Bulanan14() {
 
     }
 
-    public Bulanan14(String namabln, String nisbln, String kelasbln, String tanggalbln, String bulanan) {
+    public Bulanan14(String namabln, String nisbln, String kelasbln, String tanggalbln, String bulanan, String uploadbulanan) {
         this.namabln = namabln;
         this.nisbln = nisbln;
         this.kelasbln = kelasbln;
         this.tanggalbln = tanggalbln;
         this.bulanan = bulanan;
+        this.uploadbulanan= uploadbulanan;
     }
 
     public String getId() {
@@ -61,5 +62,13 @@ public class Bulanan14 {
 
     public void setBulanan(String bulanan) {
         this.bulanan = bulanan;
+    }
+
+    public String getUploadbulanan() {
+        return uploadbulanan;
+    }
+
+    public void setUploadbulanan(String uploadbulanan) {
+        this.uploadbulanan = uploadbulanan;
     }
 }
